@@ -1,20 +1,180 @@
 [tool.poetry]
 name = "ds-ml"
-version = "0.1.0"
-description = "A project for performing data science work."
+version = "0.2.0"
+description = "A project for performing common data science work."
 authors = ["Kevin Boehm <kmbhm1@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "ds_ml"}]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-jupyterlab = "^4.0.5"
-pandas = "^2.0.3"
-requests = "^2.31.0"
-beautifulsoup4 = "^4.12.2"
-
+packages = [{ include = "src" }]
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+jupyterlab = "^4.0.5"
+pandas = "^2.0.3"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+nltk = "^3.8.1"
+scipy = "^1.11.3"
+scikit-learn = "^1.3.2"
+myst-parser = "^2.0.0"
+python-dotenv = "^1.0.0"
+pre-commit = "^3.5.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.6.1"
+pytest = "^7.4.3"
+pytest-html = "^4.0.2"
+ansi2html = "^1.8.0"
+pytest-tap = "^3.4"
+pytest-cov = "^4.1.0"
+pytest-mypy = "^0.10.3"
+lxml = "^4.9.3"
+isort = "^5.12.0"
+nbqa = { extras = ["toolchain"], version = "^1.7.0" }
+tomli = "^2.0.1"
+ruff = "^0.1.5"
+commitizen = "^3.12.0"
+
+# Commit structure
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
+
+# Pytest coverage reports
+[tool.coverage]
+[tool.coverage.run]
+omit = [
+  '__init__.py',
+  'tests/*',
+  '*/tests/*',
+  # omit anything in a .venv directory anywhere
+  '.venv/*',
+]
+
+[tool.coverage.report]
+skip_empty = true
+
+# Mypy
+[tool.mypy]
+python_version = "3.10"
+exclude = [
+  ".git",
+  ".venv",
+  "__pycache__",
+  "build",
+  "dist",
+  "./docs/conf.py",
+  './src/tests/*',
+]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+# Linting & Formatting
+[tool.ruff]
+line-length = 88
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle
+  "F",  # Pyflakes
+  "UP", # pyupgrade
+  "D",  # pydocstyle
+  "I",  # isort
+  "Q",  # flake8-quotes
+]
+exclude = [
+  ".git",
+  ".venv",
+  "__pycache__",
+  "build",
+  "dist",
+  "docs",
+  # "notebooks",
+  "**/*tests*",
+  "scripts",
+  "setup.py",
+  "setup.cfg",
+  "pyproject.toml",
+  "poetry.lock",
+  "pyrightconfig.json",
+  ".*.yml",
+  ".*.yaml",
+  ".*.toml",
+  ".*.md",
+  ".*.txt",
+  ".*.rst",
+  ".*.json",
+  ".*.html",
+  ".*.css",
+  ".*.js",
+  ".*.png",
+  ".*.jpg",
+  ".*.jpeg",
+  ".*.gif",
+  ".*.svg",
+  ".*.ico",
+  ".*.eot",
+  ".*.ttf",
+  ".*.woff",
+  ".*.woff2",
+  ".*.map",
+  # ".*.ipynb",
+  ".*.pyi",
+  ".*.pyc",
+  ".*.pyd",
+  ".*.pyo",
+  ".*.pyw",
+  ".*.pyz",
+  ".*.pyzw",
+  ".*.DS_Store",
+  ".*.gitignore",
+  ".*.gitkeep",
+  ".*.gitmodules",
+  ".*.gitattributes",
+  ".*.git",
+  ".*.hgignore",
+  ".*.hgkeep",
+  ".*.",
+]
+ignore = [
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D104", # Missing docstring in public package
+  "D105", # Missing docstring in magic method
+  "D107", # Missing docstring in __init__
+  "D202", # No blank lines allowed after function docstring
+  "F403", # 'from module import *' used; unable to detect undefined names
+  "Q000", # Remove bad quotes
+  "Q002", # Remove bad quotes
+  "Q003", # Unnecessary single quotes
+]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "single"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = [
+  "D415", # First line should end with a period
+  "D102", # Missing docstring in public method
+  "D103", # Missing docstring in public function
+  "E501", # Line too long
+]
+
+[tool.ruff.format]
+quote-style = "single"
+exclude = ["*.ipynb"]

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # ds-ml documentation build configuration file, created by
 # sphinx-quickstart.
 #
@@ -10,9 +8,9 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
-import os
-import sys
+# import os
+# import sys
+from typing import Dict
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -26,13 +24,13 @@ import sys
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = []
+extensions = ['myst_parser']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
@@ -41,7 +39,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ds-ml'
+project = 'ds-ml'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -169,13 +167,11 @@ htmlhelp_basename = 'ds-mldoc'
 
 # -- Options for LaTeX output --------------------------------------------------
 
-latex_elements = {
+latex_elements: Dict[str, str] = {
     # The paper size ('letterpaper' or 'a4paper').
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     # 'preamble': '',
 }
@@ -183,10 +179,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-    ('index',
-     'ds-ml.tex',
-     u'ds-ml Documentation',
-     u"K Boehm", 'manual'),
+    ('index', 'ds-ml.tex', 'ds-ml Documentation', 'K Boehm', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -214,10 +207,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'ds-ml', u'ds-ml Documentation',
-     [u"K Boehm"], 1)
-]
+man_pages = [('index', 'ds-ml', 'ds-ml Documentation', ['K Boehm'], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -229,9 +219,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'ds-ml', u'ds-ml Documentation',
-     u"K Boehm", 'ds-ml',
-     'A project for doing data science work.', 'Miscellaneous'),
+    (
+        'index',
+        'ds-ml',
+        'ds-ml Documentation',
+        'K Boehm',
+        'ds-ml',
+        'A project for doing data science work.',
+        'Miscellaneous',
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.

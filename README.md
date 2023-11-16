@@ -6,8 +6,8 @@ A project for doing data science work.
 Project Organization
 ------------
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
+    ├── LICENSE            <- MIT License
+    ├── Makefile           <- Makefile with commands like `make setup` or `make clean`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -32,6 +32,7 @@ Project Organization
     │                         generated with `pip freeze > requirements.txt`
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
+    ├── episti             <- Source code with common components for publishing use in this project.
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
@@ -49,9 +50,15 @@ Project Organization
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └── pyproject.toml     <- pyproject.toml file for managing project dependencies with poetry
 
 
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+
+## References
+
+- Makefile [template](https://gist.github.com/colindean/9682b62ef5b3e87028bb8e23b5f4c4aa)
+- Date science [cookiecutter](https://towardsdatascience.com/how-to-structure-a-data-science-project-for-readability-and-transparency-360c6716800)
